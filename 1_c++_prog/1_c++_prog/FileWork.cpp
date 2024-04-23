@@ -13,6 +13,7 @@ bool FileIsEmpty(std::string filename) {
         if (end_of_file == EOF) return 1;
         else return 0;
     }
+    return 0;
 
 }
 

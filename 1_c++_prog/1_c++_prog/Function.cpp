@@ -229,7 +229,7 @@ void Function() {
             else if (option_of_function == longDistanceCallsUser) {// long distanse users ������� ������
                 break;
             }
-            else if (option_of_function == inner�ity�allsUserLimit) {// inner city sf ������� ������
+            else if (option_of_function == innerCityCallsUserLimit) {// inner city sf ������� ������
                 break;
             }
             else if (option_of_function == exit) {// �����
@@ -263,7 +263,7 @@ void Function() {
         case longDistanceCallsUser:
             LongDistanceCallsUser(book, size_of_book, option_of_save);
             break;
-        case inner�ity�allsUserLimit:
+        case innerCityCallsUserLimit:
             std::cout << "type a limit for innercity calls" << "\n";
             int limit = static_cast<int>(Num_input());
             InnerCityCallsUserLimit(book, size_of_book, limit, option_of_save);
