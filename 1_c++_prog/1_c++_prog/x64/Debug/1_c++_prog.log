@@ -1,8 +1,0 @@
-﻿  1_c++_prog.cpp
-  FileWork.cpp
-  Function.cpp
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\1_c++_prog\1_c++_prog\Function.cpp(235,44): warning C4805: ==: небезопасное смешение типа "int" и типа "bool" в операции
-  PhoneUser.cpp
-  test.cpp
-  Создание кода...
-  1_c++_prog.vcxproj -> G:\Мой диск\gOooGLE DRIVE\лабы по с++\1_c++_prog\x64\Debug\1_c++_prog.exe

@@ -1,9 +1,0 @@
-8
-Dmitriev Dmitry  "ufa 114" 8912398 8765432 6578
-Egorov Alexander  "ufa 114" 8956789 2345678 789
-Khamidullin Bogdan  "ufa 114" 3432445 5757656 5
-Kuznetsov Andrey  "ufa 114" 891234567 5436789 235
-Nikolaev Nikolay  "ufa 114" 8909876 1234567 233
-Petrov Roman  "ufa 114" 8932342 345345 3245
-Smirnov Dmitry  "ufa 114" 89112233 123456 4356
-Vasiliev Anton  "ufa 114" 89098765 1234567 4321
