@@ -3,6 +3,8 @@
 #include <vector>
 #include <unordered_map>
 #include "Document.h"
+#include "Letter.h"
+
 
 
 bool FileIsEmpty(std::string filename) {
@@ -11,7 +13,8 @@ bool FileIsEmpty(std::string filename) {
     char end_of_file;
     if (file.is_open()) {
         file >> end_of_file;
-        if (end_of_file == EOF) return 1;
+        file.close();
+        if (end_of_file <0) return 1;
         else return 0;
     }
     return 0;
@@ -20,10 +23,10 @@ bool FileIsEmpty(std::string filename) {
 
 
 
-bool OpenFile(std::string filename, std::ifstream& file) { // чтение
+bool OpenFile(std::string filename, std::ofstream& file) { // запись 
 
     // Попытаться открыть файл
-    file.open(filename);
+    file.open(filename, std::ios::out);// для старые данные удаляются
     if (file.is_open()) {
         //std::cout << "File successfully opened" << "\n";
         return 1;
@@ -33,17 +36,17 @@ bool OpenFile(std::string filename, std::ifstream& file) { // чтение
         return 0;
     }
 }
-bool OpenFile(std::string filename, std::ofstream& file) { //запись
+uint16_t OpenFile(std::string filename, std::ifstream& file) { //чтение
     bool is_empty = FileIsEmpty(filename);
     // Попытаться открыть файл
-    file.open(filename, std::ios::out);// для старые данные удаляются
+    file.open(filename);
     if (file.is_open() && is_empty) {
+       // std::cout << "File is not empty, failed to open the file. " << "\n";
+        return 2;
+    }
+    if (file.is_open()) {
         //std::cout << "File successfully opened" << "\n";
         return 1;
-    }
-    if (file.is_open() && is_empty == 0) {
-        std::cout << "File is not empty, failed to open the file. " << "\n";
-        return 0;
     }
     else {
         std::cout << "Failed to open the file." << "\n";
@@ -54,7 +57,7 @@ bool OpenFile(std::string filename, std::ofstream& file) { //запись
 
 
 
-void FileInput(std::vector<PhoneUser>* save_book) {
+void FileInput(std::unordered_map <std::string, Document*>& document_list) {
     std::ofstream file;
 
     while (true) {
@@ -70,12 +73,11 @@ void FileInput(std::vector<PhoneUser>* save_book) {
 
     }
     // Запись данных в файл
-    file << save_book->size() << "\n";
-    for (PhoneUser& user : *save_book) {
-        file << user.GetSecondName() << " " << user.GetName() << " " << user.GetAddress() << " " << user.GetPhoneNumber() << " " << user.GetTimeInnerCityCalls()
-            << " " << user.GetTimeLongDistanceCalls() << "\n";
+    file << document_list.size() << "\n";
+    for (auto& [name,document] : document_list) {
+        file << document->GetType() << " " << document->GetName() << " " << document->GetDocumentFilename() << " " << document->GetDocumentFilename() << " " << dynamic_cast<Letter*>(document)->GetAddressee() << " " << dynamic_cast<Letter*>(document)->GetSender();
+            
     }
-
 
 
     std::cout << "Data successfully written to the file." << std::endl;
@@ -88,6 +90,7 @@ void FileInput(std::vector<PhoneUser>* save_book) {
 
 void FileFilling(std::unordered_map <std::string,Document*> &document_list, size_t& size_of_book) {
     std::ifstream file;
+    uint16_t file_is_open =0;
 
     while (true) {
 
@@ -96,13 +99,17 @@ void FileFilling(std::unordered_map <std::string,Document*> &document_list, size
         //std::cin >> filename;
 
         //открытие файла:
-        if (OpenFile(filename, file)) {
+        file_is_open = OpenFile(filename, file);
+        if (file_is_open) {
             break;
         }
 
     }
-
-    file >> size_of_book;
+    if (file_is_open == 2) {
+        size_of_book = 0;
+    }
+    else file >> size_of_book;
+    
 
     // Чтение данных из файла
     for (int i = 0; i < size_of_book; i++) { // заполнение
@@ -122,8 +129,8 @@ void FileFilling(std::unordered_map <std::string,Document*> &document_list, size
             auto* document = new Letter;
             std::string addressee; //получатель
             std::string sender;
-            std::cin >> addressee;
-            std::cin >> sender;
+            file >> addressee;
+            file >> sender;
             document->SetSender(sender);
             document->SetAddressee(addressee);
             document->SetDocumentFilename(document_filename);
@@ -141,41 +148,41 @@ void FileFilling(std::unordered_map <std::string,Document*> &document_list, size
     file.close();
 }
 
-void FileFilling(std::vector<PhoneUser>& book, std::string filename) {                    // для тестов
-    std::ifstream file;
-
-    file.open(filename);
-    int size_of_book = 0;
-    file >> size_of_book;
-    book.resize(size_of_book);
-    // Чтение данных из файла
-    for (int i = 0; i < size_of_book; i++) { // заполнение
-        string name;
-        string second_name;
-        int phone = 0;
-        int inner_time = 0;
-        int long_distance_time = 0;
-
-        file >> second_name;
-        file >> name;
-        book[i].SetAddress(file);
-        file.ignore(); // clear input buffer
-        file >> phone;
-        file >> inner_time;
-        file >> long_distance_time;
-
-        book[i].SetSecondName(second_name);
-        book[i].SetName(name);
-        book[i].SetPhoneNumber(phone);
-        book[i].SetTimeInnerCityCalls(inner_time);
-        book[i].SetTimeLongDistanceCalls(long_distance_time);
-    }
-
-
-
-    // Закрытие файла
-    file.close();
-}
+//void FileFilling(std::vector<PhoneUser>& book, std::string filename) {                    // для тестов
+//    std::ifstream file;
+//
+//    file.open(filename);
+//    int size_of_book = 0;
+//    file >> size_of_book;
+//    book.resize(size_of_book);
+//    // Чтение данных из файла
+//    for (int i = 0; i < size_of_book; i++) { // заполнение
+//        string name;
+//        string second_name;
+//        int phone = 0;
+//        int inner_time = 0;
+//        int long_distance_time = 0;
+//
+//        file >> second_name;
+//        file >> name;
+//        book[i].SetAddress(file);
+//        file.ignore(); // clear input buffer
+//        file >> phone;
+//        file >> inner_time;
+//        file >> long_distance_time;
+//
+//        book[i].SetSecondName(second_name);
+//        book[i].SetName(name);
+//        book[i].SetPhoneNumber(phone);
+//        book[i].SetTimeInnerCityCalls(inner_time);
+//        book[i].SetTimeLongDistanceCalls(long_distance_time);
+//    }
+//
+//
+//
+//    // Закрытие файла
+//    file.close();
+//}
 
 
 

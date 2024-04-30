@@ -6,32 +6,8 @@
 
 #include "NumInput.h"
 #include "Document.h"
+#include "Letter.h"
 #include "FileWork.h"
-
-
-class Letter:public Document {
-public:
-	void SetAddressee(std::string addressee) {
-		addressee_ = addressee;
-	}
-	void SetSender(std::string sender){
-		sender_ = sender;
-		}
-	auto GetAddressee(){
-		return addressee_;
-		}
-	auto GetSender(){
-		return sender_;
-		}
-	void Display() override {
-		std::cout << type_ << " "  << name_<< " " << document_filename_ << " " << addressee_ << " " << sender_ << " ";
-	}
-private:
-
-	std::string addressee_; //получатель
-	std::string sender_; //отправитель
-
-};
 
 
 
@@ -47,7 +23,7 @@ void DeleteDocument(std::unordered_map <std::string, Document*>& document_list, 
 }
 
 void AddDocument(std::unordered_map <std::string, Document*>& document_list) {
-	std::cout << "example: type \"name\" filename" << "\n";
+	std::cout << "example: type \"name\" filename ....." << "\n";
 
 		std::string type;
 		std::string name;
@@ -69,6 +45,7 @@ void AddDocument(std::unordered_map <std::string, Document*>& document_list) {
 		//сделать выбор для разных типов 
 		if (type == "letter") {
 			auto* document = new Letter;
+			std::cout << "example continue:  addressee, sender\n ";
 			std::string addressee; //получатель
 			std::string sender;
 			std::cin >> addressee;
@@ -109,11 +86,69 @@ void Function(uint16_t option) {
 		while (true) {
 
 
+			int option_of_function = 0;
+			std::cout << "\n\n";
+			std::cout << "type a option of function\n Display all - 1\n Add document - 2\n Delete document - 3\n Find and display document - 4\nexit - 0" << "\n";
+			while (true) { 
+				option_of_function = static_cast<int>(Num_input());
+				if (option_of_function == 1) {//Display all
+					break;
+				}
+				else if (option_of_function == 2) {// Add document
+					break;
+				}
+				else if (option_of_function == 3) {// Delete document
+					break;
+				}
+				else if (option_of_function == 4) {// Find and display document
+					break;
+				}
+				else if (option_of_function == 0) {// exit
+					break;
+				}
+				else {
+					std::cout << "Invalid input. Please enter a valid command." << "\n";
+				}
+			}
 
 
+			switch (option_of_function) {
+			case 1:
+				DisplayAll(document_list);
+				break;
 
+			case 2:
+				AddDocument(document_list);
+				break;
 
+			case 3:
+				{
+				std::cout << "type a name to delete" << "\n";
+				std::string name;
+				std::cin >> name;
+				if (FindDocumentByName(document_list, name) == nullptr) {
+					std::cout << "there is not document with this name\n";
+					break;
+				}
+				DeleteDocument(document_list, name);
+				}
+				break;
 
+			case 4:
+				{
+				std::cout << "type a name to find" << "\n";
+				std::string name;
+				std::cin >> name;
+				if (FindDocumentByName(document_list, name) == nullptr) {
+					std::cout << "there is not document with this name\n";
+					break;
+				}
+				Document* document = FindDocumentByName(document_list, name);
+				document->Display();
+				}
+				break;
+			}
+			std::cout << "\n" << "\n";
 
 		}
 
@@ -144,7 +179,7 @@ int main()
 
 		if (command == 1) {
 
-			Function();
+			Function(1);
 
 
 

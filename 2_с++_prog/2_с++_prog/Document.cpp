@@ -19,21 +19,21 @@ Document::Document() {
 uint32_t Document::GetID() {
 	return ID_;
 }
-auto Document::GetDocumentFilename() {
+std::string Document::GetDocumentFilename() {
 	return document_filename_;
 }
 void Document::SetDocumentFilename(std::string filename) {
 	document_filename_ = filename;
 }
 
-auto Document::GetName() {
+std::string Document::GetName() {
 	return name_;
 }
 void Document::SetName(std::string name) {
 	name_ = name;
 }
 
-auto Document::GetType() {
+std::string Document::GetType() {
 	return type_;
 }
 void Document::SetType(std::string type) {

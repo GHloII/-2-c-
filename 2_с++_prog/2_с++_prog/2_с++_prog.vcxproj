@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,7 +142,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2_с++_prog.cpp" />
+    <ClCompile Include="Document.cpp" />
+    <ClCompile Include="FileWork.cpp" />
     <ClCompile Include="NumInput.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Document.h" />
+    <ClInclude Include="FileWork.h" />
+    <ClInclude Include="Letter.h" />
+    <ClInclude Include="NumInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

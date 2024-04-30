@@ -12,9 +12,9 @@ public:
 //	auto GetRelatedDocuments();
 
 	uint32_t GetID();
-	auto GetDocumentFilename();
-	auto GetName();
-	auto GetType();
+	std::string GetDocumentFilename();
+	std::string GetName();
+	std::string GetType();
 
 	void SetName(std::string name);
 	void SetType(std::string type);
