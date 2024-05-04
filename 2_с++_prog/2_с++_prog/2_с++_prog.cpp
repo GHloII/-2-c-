@@ -3,6 +3,8 @@
 #include <vector>
 #include <unordered_map>
 #include <set>
+#include <fstream>
+
 
 #include "NumInput.h"
 #include "Document.h"
@@ -23,7 +25,7 @@ void DeleteDocument(std::unordered_map <std::string, Document*>& document_list, 
 }
 
 void AddDocument(std::unordered_map <std::string, Document*>& document_list) {
-	std::cout << "example: type \"name\" filename ....." << "\n";
+	std::cout << "example: type (letter) \"name\" filename ....." << "\n";
 
 		std::string type;
 		std::string name;
@@ -57,8 +59,8 @@ void AddDocument(std::unordered_map <std::string, Document*>& document_list) {
 			document->SetType(type);
 			document_list.insert({ name, document });
 		}
-
-
+		
+		
 		
 
 	std::cout << "\n" << "\n";
@@ -70,6 +72,59 @@ void DisplayAll(std::unordered_map <std::string, Document*>& document_list) {
 	}
 }
 
+
+void Test1() {
+	std::string filename_for_test = "./test1";
+	std::ifstream file;
+	if (OpenFile(filename_for_test, file) == 0) { // н открываеится
+		std::cout << "test1 successfull\n";
+		file.close();
+	}
+}
+
+void Test2() {
+	std::string filename_for_test = "./test2.txt"; //пустой
+	std::ifstream file;
+	if (OpenFile(filename_for_test, file) == 2) {
+		std::cout << "test2 successfull\n";
+		file.close();
+	}
+}  
+
+void Test3() {
+	std::string filename_for_test = "./test3.txt";
+	std::ifstream file;
+	if (OpenFile(filename_for_test, file) == 1) {
+		std::cout << "test3 successfull\n";
+		file.close();
+	}
+}
+
+void Test4() {
+	std::unordered_map <std::string, Document*> document_list;
+	size_t size;
+	std::string filename_for_test = "./test4.txt";
+
+	// написать filefilllingh с filename
+	FileFilling(document_list, size, filename_for_test);
+	Document* document = FindDocumentByName(document_list, "Nos");//добавить имя
+	if (document == nullptr) {
+		std::cout << "test4 successfull\n";
+	}
+}
+
+void Test5() {
+	std::unordered_map <std::string, Document*> document_list;
+	size_t size;
+	std::string filename_for_test = "./test5.txt";
+
+	// написать filefilllingh с filename
+	FileFilling(document_list, size, filename_for_test);
+	Document* document = FindDocumentByName(document_list, "KIngdomCome");
+	if (document != nullptr) {
+		std::cout << "test5 successfull\n";
+	}
+}
 
 
 void Function(uint16_t option) {
@@ -87,8 +142,8 @@ void Function(uint16_t option) {
 
 
 			int option_of_function = 0;
-			std::cout << "\n\n";
-			std::cout << "type a option of function\n Display all - 1\n Add document - 2\n Delete document - 3\n Find and display document - 4\nexit - 0" << "\n";
+			std::cout << "\n";
+			std::cout << "type a option of function\n Display all - 1\n Add document - 2\n Delete document - 3\n Find and display document - 4\n exit - 0" << "\n";
 			while (true) { 
 				option_of_function = static_cast<int>(Num_input());
 				if (option_of_function == 1) {//Display all
@@ -148,11 +203,19 @@ void Function(uint16_t option) {
 				}
 				break;
 			}
-			std::cout << "\n" << "\n";
+			std::cout << "\n";
 
 		}
 
 
+	}
+	
+	else if (option == 2) {
+		Test1();
+		Test2();
+		Test3();
+		Test4();
+		Test5();
 	}
 
 
@@ -173,21 +236,15 @@ int main()
 	//	<< "Task text: Абонент: фамилия, имя, отчество, адрес, номер телефона, время внутригородских разговоров, время междугородних разговоров.\nСоздать массив объектов. Реализовать возможность получения:\nсписка абонентов, время внутригородских разговоров которых\nпревышает заданное,\nсписка абонентов, воспользовавшихся междугородней связью,\nсписка абонентов, выведенных в алфавитном порядке.\n\n";
 	while (true) {
 
-		std::cout << "begin - 1\ntest - 2 \nexit - 0\n\n";
+		std::cout << "begin - 1\ntest - 2 \nexit - 0\n";
 		command = static_cast<int>(Num_input());
-		std::cout << "\n\n";
+		//std::cout << "\n\n";
 
 		if (command == 1) {
-
 			Function(1);
-
-
-
-
 		}
 		else if (command == 2) {
-
-			//Test();
+			Function(2);
 			std::cout << "\n\n";
 		}
 		else if (command == 0) {
