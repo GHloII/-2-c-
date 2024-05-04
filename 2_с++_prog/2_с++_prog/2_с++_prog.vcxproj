@@ -112,7 +112,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -125,7 +125,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -144,12 +144,15 @@
     <ClCompile Include="2_с++_prog.cpp" />
     <ClCompile Include="Document.cpp" />
     <ClCompile Include="FileWork.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="NumInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Document.h" />
     <ClInclude Include="FileWork.h" />
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="Letter.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="NumInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

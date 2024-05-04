@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "Document.h"
 #include "Letter.h"
+#include "Menu.h"
 
 
 
@@ -14,10 +15,10 @@ bool FileIsEmpty(std::string filename) {
     if (file.is_open()) {
         file >> end_of_file;
         file.close();
-        if (end_of_file <0) return 1;
-        else return 0;
+        if (end_of_file < 0) return true;
+        else return false;
     }
-    return 0;
+    return false;
 
 }
 
@@ -29,11 +30,11 @@ bool OpenFile(std::string filename, std::ofstream& file) { // запись
     file.open(filename, std::ios::out);// для старые данные удаляются
     if (file.is_open()) {
         //std::cout << "File successfully opened" << "\n";
-        return 1;
+        return true;
     }
     else {
         std::cout << "Failed to open the file." << "\n";
-        return 0;
+        return false;
     }
 }
 
@@ -43,15 +44,15 @@ uint16_t OpenFile(std::string filename, std::ifstream& file) { //чтение
     file.open(filename);
     if (file.is_open() && is_empty) {
        // std::cout << "File is not empty, failed to open the file. " << "\n";
-        return 2;
+        return file_open_empty;
     }
     if (file.is_open()) {
         //std::cout << "File successfully opened" << "\n";
-        return 1;
+        return file_open;
     }
     else {
         std::cout << "Failed to open the file." << "\n";
-        return 0;
+        return false;
     }
 }
 
@@ -106,7 +107,7 @@ void FileFilling(std::unordered_map <std::string,Document*> &document_list, size
         }
 
     }
-    if (file_is_open == 2) {
+    if (file_is_open == file_open_empty) {
         size_of_book = 0;
     }
     else file >> size_of_book;
@@ -149,13 +150,13 @@ void FileFilling(std::unordered_map <std::string,Document*> &document_list, size
     file.close();
 }
 
-void FileFilling(std::unordered_map <std::string, Document*>& document_list, size_t& size_of_book, std::string document_filename) {                    // для тестов
+void FileFilling(std::unordered_map <std::string, Document*>& document_list, size_t& size_of_book, std::string current_filename) {                    // для тестов
     std::ifstream file;
     uint16_t file_is_open = 0;
 
     while (true) {
 
-        std::string filename = document_filename;
+        std::string filename = current_filename;
         //std::cout << "please tape any filenameway" << "\n";
         //std::cin >> filename;
 
@@ -166,7 +167,7 @@ void FileFilling(std::unordered_map <std::string, Document*>& document_list, siz
         }
 
     }
-    if (file_is_open == 2) {
+    if (file_is_open == file_open_empty) {
         size_of_book = 0;
     }
     else file >> size_of_book;
