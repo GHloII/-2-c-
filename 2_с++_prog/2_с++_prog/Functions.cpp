@@ -64,6 +64,7 @@ void AddDocument(std::unordered_map <std::string, Document*>& document_list) {
 void DisplayAll(std::unordered_map <std::string, Document*>& document_list) {
 	for (const auto& [name, document] : document_list) {
 		document->Display();
+		std::cout << "\n";
 	}
 }
 
@@ -153,7 +154,7 @@ void Function(uint16_t option) {
 				else if (option_of_function == Findand_display_document) {// Find and display document
 					break;
 				}
-				else if (option_of_function == exit) {// exit
+				else if (option_of_function == Exit) {// exit
 					exit = true;
 					break;
 				}
@@ -203,7 +204,6 @@ void Function(uint16_t option) {
 			break;
 			}
 			std::cout << "\n";
-
 		}
 
 
@@ -218,5 +218,25 @@ void Function(uint16_t option) {
 	}
 
 
+	FileInput(document_list);
 
 }
+
+// letter Thor fjksdhf skdj hfjks 
+// letter Thor1 fjksdhf skdj hfjks 
+// letter Thor2 fjksdhf skdj hfjks 
+
+/*
+
+3
+letter Thor fjksdhf fjksdhf skdj
+letter Thor1 fjksdhf fjksdhf skdj
+letter Thor2 fjksdhf fjksdhf skdj
+letter vakanda kle ewf ewf
+
+
+
+
+
+
+*/

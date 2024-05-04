@@ -64,9 +64,9 @@ void FileInput(std::unordered_map <std::string, Document*>& document_list) {
 
     while (true) {
 
-        std::cout << "please tape any filenameway" << "\n";
-        std::string filename;
-        std::cin >> filename;
+        //std::cout << "please tape any filenameway" << "\n";
+        std::string filename  = "./test.txt";
+        //std::cin >> filename;
 
         //открытие файла:
         if (OpenFile(filename, file)) {
@@ -77,12 +77,12 @@ void FileInput(std::unordered_map <std::string, Document*>& document_list) {
     // Запись данных в файл
     file << document_list.size() << "\n";
     for (auto& [name,document] : document_list) {
-        file << document->GetType() << " " << document->GetName() << " " << document->GetDocumentFilename() << " " << document->GetDocumentFilename() << " " << dynamic_cast<Letter*>(document)->GetAddressee() << " " << dynamic_cast<Letter*>(document)->GetSender();
+        file << document->GetType() << " " << document->GetName() <<  " " << document->GetDocumentFilename() << " " << dynamic_cast<Letter*>(document)->GetAddressee() << " " << dynamic_cast<Letter*>(document)->GetSender() << " \n";
             
     }
 
 
-    std::cout << "Data successfully written to the file." << std::endl;
+    //std::cout << "Data successfully written to the file." << std::endl;
 
 
     // Закрытие файла

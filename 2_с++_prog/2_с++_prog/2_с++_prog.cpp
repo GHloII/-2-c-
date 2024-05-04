@@ -40,7 +40,7 @@ int main()
 			Function(test);
 			std::cout << "\n\n";
 		}
-		else if (command == exit) {
+		else if (command == Exit) {
 
 
 			std::cout << "prog has been finished";

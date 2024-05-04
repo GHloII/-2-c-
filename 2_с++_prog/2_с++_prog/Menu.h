@@ -8,4 +8,4 @@ enum MenuFunction { display = 1, Add_document = 2, Delete_document = 3, Findand_
 enum Menusf { file_open_empty =2, file_open = 1, 
  };
 
-enum MenuCommand { start = 1, test = 2, exit = 0 };
+enum MenuCommand { start = 1, test = 2, Exit = 0 };
