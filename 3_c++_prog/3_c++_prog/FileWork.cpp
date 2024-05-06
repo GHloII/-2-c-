@@ -55,34 +55,34 @@ bool OpenFile(std::string filename, std::ofstream& file) { // запись
 
 
 //void FileInput(std::unordered_map <std::string, Document*>& document_list) {
-    std::ofstream file;
-
-    while (true) {
-
-        //std::cout << "please tape any filenameway" << "\n";
-        std::string filename  = "./test.txt";
-        //std::cin >> filename;
-
-        //открытие файла:
-        if (OpenFile(filename, file)) {
-            break;
-        }
-
-    }
-    // Запись данных в файл
-    file << document_list.size() << "\n";
-    for (auto& [name,document] : document_list) {
-        file << document->GetType() << " " << document->GetName() <<  " " << document->GetDocumentFilename() << " " << dynamic_cast<Letter*>(document)->GetAddressee() << " " << dynamic_cast<Letter*>(document)->GetSender() << " \n";
-            
-    }
-
-
-    //std::cout << "Data successfully written to the file." << std::endl;
-
-
-    // Закрытие файла
-    file.close();
-}
+//    std::ofstream file;
+//
+//    while (true) {
+//
+//        //std::cout << "please tape any filenameway" << "\n";
+//        std::string filename  = "./test.txt";
+//        //std::cin >> filename;
+//
+//        //открытие файла:
+//        if (OpenFile(filename, file)) {
+//            break;
+//        }
+//
+//    }
+//    // Запись данных в файл
+//    file << document_list.size() << "\n";
+//    for (auto& [name,document] : document_list) {
+//        file << document->GetType() << " " << document->GetName() <<  " " << document->GetDocumentFilename() << " " << dynamic_cast<Letter*>(document)->GetAddressee() << " " << dynamic_cast<Letter*>(document)->GetSender() << " \n";
+//            
+//    }
+//
+//
+//    //std::cout << "Data successfully written to the file." << std::endl;
+//
+//
+//    // Закрытие файла
+//    file.close();
+//}
 
 
 

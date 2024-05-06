@@ -1,23 +1,2 @@
 ﻿  3_c++_prog.cpp
-  FileWork.cpp
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(60,5): error C2059: синтаксическая ошибка: while
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(60,18): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(60,18): error C2447: {: отсутствует заголовок функции (возможно, используется формальный список старого типа)
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(73,10): error C2143: синтаксическая ошибка: отсутствие ";" перед "<<"
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(73,10): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(73,5): error C2371: file: переопределение; различные базовые типы
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(58): message : см. объявление "file"
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(74,34): error C2065: document_list: необъявленный идентификатор
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(74,5): error C2059: синтаксическая ошибка: for
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(74,5): error C2059: синтаксическая ошибка: )
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(74,49): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(75,17): error C2065: document: необъявленный идентификатор
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(75,47): error C2065: document: необъявленный идентификатор
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(75,78): error C2065: document: необъявленный идентификатор
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(75,133): error C2061: синтаксическая ошибка: идентификатор "Letter"
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(77,5): error C2059: синтаксическая ошибка: }
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(77,5): error C2143: синтаксическая ошибка: отсутствие ";" перед "}"
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(85,1): error C2059: синтаксическая ошибка: }
-G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\3_c++_prog\FileWork.cpp(85,1): error C2143: синтаксическая ошибка: отсутствие ";" перед "}"
-  NumInput.cpp
-  Создание кода...
+  3_c++_prog.vcxproj -> G:\Мой диск\gOooGLE DRIVE\лабы по с++\3_c++_prog\x64\Debug\3_c++_prog.exe
