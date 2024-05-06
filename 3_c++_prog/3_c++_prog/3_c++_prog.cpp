@@ -1,13 +1,16 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
-
+#include <fstream>
+#include "FileWork.h"
 
 
 class Text {
 public:
 
-   
+    ~Text() {
+        //вызывается функция которая сохравняет все из вектора диалогов   в отдельном тхт файле
+    }
 
     void DialogDivision() {
         bool is_dialog_continue = false; //проверка был ли предыдущий абзац диалогом
@@ -36,6 +39,7 @@ public:
             {
                 std::cout << *s[i]<<"\n";
             }
+            std::cout << "\n";
         }
     }
 
@@ -58,6 +62,38 @@ public:
         }
     }
 
+    void AddTextFromFile() {
+        std::ifstream file;
+
+        while (true) {
+
+            std::cout << "please tape any filenameway" << "\n";
+            std::string filename = "./test.txt";
+            std::cin >> filename;
+            
+            if (OpenFile(filename, file)) {
+                break;
+            }
+        }
+
+        std::string temp;
+        int i = 0;
+        while (true) {
+            getline(std::cin, temp);
+
+            if (temp == "") {
+                break;
+            }
+            text += temp;
+            text += '\n';
+            paragraphs.push_back(temp);
+
+            temp = "";
+            ++i;
+        }
+    }
+    
+
     void DisplayText() {
         std::cout << text << "\n";
     }
@@ -71,17 +107,13 @@ private:
 };
 
 
+
 int main() {
     setlocale(LC_CTYPE, "Ru");
     Text text;
     text.AddText();
     //text.DisplayText();
- //   text.ParagraphDivision();
     text.DialogDivision();
     text.DisplayDialog();
 }
 
-/*
-
-
-*/
