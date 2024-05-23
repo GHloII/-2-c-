@@ -95,7 +95,6 @@ private:
 
 };
 
-
 //сортировка вставками
 class InsertionSort : public ISort {
 
@@ -169,6 +168,112 @@ private:
 
 };
 
+//сортировка Шелла
+class ShellSort : public ISort {
+
+public:
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
+		int t = N;
+		N = M;
+		M = t;
+		for (int i = 0; i < N; ++i) {
+			Shell_sort(trans_matrix[i], M);
+		}
+		std::vector<std::vector<double>>* result_matrix_ptr = Transponding(trans_matrix, N, M);
+
+		delete trans_matrix_ptr;
+		return result_matrix_ptr;
+	}
+private:
+
+	void Shell_sort(std::vector<double>& array, int size) {
+		for (size_t gap = size / 2; gap > 0; gap = gap / 2) {
+			for (size_t i = gap; i < size; ++i) {
+				double temp = array[i];
+				size_t j = 0;
+				for (size_t j = i; j >= gap; j -= gap) {
+
+					comparison_counter++;
+					if (abs(array[j - gap]) <= abs(array[j])) break;
+
+					std::swap(array[j - gap], array[j]);
+					swap_counter++;
+				}
+			}
+		}
+	}
+
+
+};
+
+//быстрая сортировка
+class QSort : public ISort {
+
+public:
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
+		int t = N;
+		N = M;
+		M = t;
+		for (int i = 0; i < N; ++i) {
+			QuickSort(trans_matrix[i],0, M-1);
+		}
+		std::vector<std::vector<double>>* result_matrix_ptr = Transponding(trans_matrix, N, M);
+
+		delete trans_matrix_ptr;
+		return result_matrix_ptr;
+	}
+private:
+
+
+	int Partition(std::vector<double>& array, int low, int high) {
+
+		double pivot = array[high];
+		int i = low - 1;
+
+		for (int j = low; j <= high - 1; j++) {
+			comparison_counter++;
+
+			if (abs(array[j]) < abs(pivot)) {
+
+				i++;
+				swap_counter++;
+				std::swap(array[i], array[j]);
+			}
+		}
+
+		swap_counter++;
+		std::swap(array[i + 1], array[high]);
+
+		return i + 1;
+	}
+
+	void QuickSort(std::vector<double>& array, int low, int high) {
+
+		if (low < high) {
+
+			int pi = Partition(array, low, high);
+
+			QuickSort(array, low, pi - 1);
+			QuickSort(array, pi + 1, high);
+		}
+	}
+
+
+};
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,7 +294,7 @@ int main() {
 		}
 	}
 
-	BubbleSort sort;
+	QSort sort;
 	std::vector<std::vector<double>> result_matrix = *(sort.Sort(matrix, N, M));
 	sort.Show_counters();
 
