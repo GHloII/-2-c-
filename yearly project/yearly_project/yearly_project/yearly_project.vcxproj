@@ -141,14 +141,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BubbleSort.cpp" />
     <ClCompile Include="FileWork.cpp" />
+    <ClCompile Include="Function.cpp" />
+    <ClCompile Include="InsertionSort.cpp" />
+    <ClCompile Include="ISort.cpp" />
     <ClCompile Include="NumInput.cpp" />
+    <ClCompile Include="QSort.cpp" />
+    <ClCompile Include="SelectionSort.cpp" />
+    <ClCompile Include="ShellSort.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BubbleSort.h" />
     <ClInclude Include="FileWork.h" />
+    <ClInclude Include="Function.h" />
+    <ClInclude Include="InsertionSort.h" />
+    <ClInclude Include="ISort.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="NumInput.h" />
+    <ClInclude Include="QSort.h" />
+    <ClInclude Include="SelectionSort.h" />
+    <ClInclude Include="ShellSort.h" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

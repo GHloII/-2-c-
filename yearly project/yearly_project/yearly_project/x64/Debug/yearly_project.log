@@ -1,4 +1,10 @@
-﻿  FileWork.cpp
+﻿  BubbleSort.cpp
+  Function.cpp
+  InsertionSort.cpp
+  QSort.cpp
+  SelectionSort.cpp
+  ShellSort.cpp
   Source.cpp
+G:\Мой диск\gOooGLE DRIVE\лабы по с++\yearly project\yearly_project\yearly_project\Source.cpp(25,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   Создание кода...
   yearly_project.vcxproj -> G:\Мой диск\gOooGLE DRIVE\лабы по с++\yearly project\yearly_project\x64\Debug\yearly_project.exe
