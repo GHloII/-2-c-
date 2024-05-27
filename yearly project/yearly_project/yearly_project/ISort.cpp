@@ -17,3 +17,7 @@ void ISort::Reset_counters() {
     swap_counter = 0;
     comparison_counter = 0;
 }
+
+ ISort::~ISort() {
+     Reset_counters();
+}

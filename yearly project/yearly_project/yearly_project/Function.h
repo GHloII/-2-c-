@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <iomanip>
 
 #include "Menu.h"
 #include "NumInput.h"

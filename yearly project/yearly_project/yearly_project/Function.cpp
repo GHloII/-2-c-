@@ -29,6 +29,7 @@ void Display(std::vector<std::vector<double>>* matrix, int& N, int& M) {
 }
 
 
+
 void HandFilling(std::vector<std::vector<double>>& matrix, int& N, int& M) {
 	size_t size = N * M;
 	std::cout << "enter " << size << " numbers" << "\n";

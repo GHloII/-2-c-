@@ -16,5 +16,5 @@ public:
     void Show_counters();
     void Reset_counters();
 
-    virtual ~ISort() = default;
+    virtual ~ISort();
 };

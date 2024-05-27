@@ -11,12 +11,13 @@
 #include "BubbleSort.h"
 #include "ShellSort.h"
 #include "QSort.h"
+#include "Test.h"
 
 
 int main()
 {
 	setlocale(LC_CTYPE, "Russian");
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(NULL)));
 	int command = 0;
 
 	std::cout << "Hello, Alexey Konstantinovich, Roman Valerievich and Ivan Grigorievich\n"
@@ -36,7 +37,7 @@ int main()
 			Function(/*start*/);
 		}
 		else if (command == test) {
-			Function(/*test*/);
+			Test();
 			std::cout << "\n\n";
 		}
 		else if (command == Exit) {
