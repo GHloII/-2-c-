@@ -20,13 +20,8 @@ int main()
 	srand(static_cast<unsigned int>(time(NULL)));
 	int command = 0;
 
-	std::cout << "Hello, Alexey Konstantinovich, Roman Valerievich and Ivan Grigorievich\n"
-		<< "Author: Ivanov Gleb Igorevich\n"
-		<< "group: 4303, 2024\n"
-		<< "Project name: 2_c++_prog.cpp\n"
-		<< "Task name: task 2 variant 13\n"
+	show_greeting();
 
-		<< "Task text:  Базовый класс – документ предприятия. Производный класс – письмо.\n";
 	while (true) {
 
 		std::cout << "begin - 1\ntest - 2 \nexit - 0\n";
@@ -85,9 +80,6 @@ transponding matrix
 	32 323 928 23 1 
 	74897 34 23 432 4 
 	0 32 43 5 9 
-
-
-
 
 	1 
 	1 

@@ -26,5 +26,6 @@ void RandomFilling(std::vector<std::vector<double>>& matrix, int& N, int& M);
 void Filling(int option, std::vector<std::vector<double>>*& matrix, int& N, int& M);
 
 void Function();
+void show_greeting();
 
 

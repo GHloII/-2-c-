@@ -16,6 +16,23 @@ std::vector<std::vector<double>>* Transponding(std::vector<std::vector<double>>&
 
 }
 
+void show_greeting() {
+
+	std::cout << "Ivanov Gleb Igorevich; group 4303; number 13" << "\n";
+	std::cout << "Course work." << "\n" << "\n";
+
+
+	std::cout << "Create a console program to sort an array using:" << "\n";
+	std::cout << "bubble sort, selection sort, insertion sort, shell sort, and quicksort." << "\n";
+	std::cout << "Display the unordered array once, and then display the ordered arrays for each sorting method." << "\n";
+	std::cout << "Also, create a comparative table showing the efficiency of each sorting method," << "\n";
+	std::cout << "including the number of comparisons and variable swaps." << "\n" << "\n";
+
+	std::cout << "The unordered matrix of N rows and M columns is inputted once" << "\n";
+	std::cout << "(from the keyboard, file, or generated randomly) and is then used for each sorting method." << "\n" << "\n";
+
+}
+
 void Display(std::vector<std::vector<double>>* matrix, int& N, int& M) {
 	std::vector<std::vector<double>> matrix_display = *matrix;
 	for (size_t i = 0; i < N; i++)
@@ -24,7 +41,7 @@ void Display(std::vector<std::vector<double>>* matrix, int& N, int& M) {
 		{
 			std::cout << matrix_display[i][j] << "\t";
 		}
-		std::cout << "\n";
+		std::cout << '\n';
 	}
 }
 
@@ -76,7 +93,7 @@ void Function() {
 	int M = 0; // количество столбцов j
 	std::vector<std::vector<double>>* matrix = nullptr;
 
-	std::cout << "type a option of filling " << "\n"
+	std::cout << "Enter a option of filling " << "\n"
 		"2 - random 1 - file 0 - hand" << "\n";
 
 	int option_of_filling = hand_filling;
@@ -91,7 +108,7 @@ void Function() {
 
 	if (option_of_filling == hand_filling || option_of_filling == random_filling) {
 
-		std::cout << "enter the number of rows and the number of columns " << "\n";
+		std::cout << "Enter the number of rows and the number of columns " << "\n";
 		N = int_Num_input();
 		M = int_Num_input();
 		matrix = new std::vector<std::vector<double>>(N, std::vector<double>(M));
@@ -99,16 +116,17 @@ void Function() {
 
 	Filling(option_of_filling, matrix, N, M);
 
-	//std::cout << "do you want to save the result?\n 1 - yes\n 0 - no" << "\n";// ������ ����������� ������
-	//int option_of_save = 0;
-	//while (true) {
-	//	option_of_save = int_Num_input();
-	//	if (option_of_save == save || option_of_save == dontSave) {
-	//		break;
-	//	}
-	//	std::cout << "Invalid input. Please enter a valid number." << "\n";
-	//}
-	//std::cout << "\n";
+	std::cout << "Want to save the original matrix?\n 1 - yes\n 0 - no" << "\n";// ������ ����������� ������
+	int option_of_save = 0;
+	while (true) {
+		option_of_save = int_Num_input();
+		if (option_of_save == save || option_of_save == dontSave) {
+			break;
+		}
+		std::cout << "Invalid input. Please enter a valid number." << "\n";
+	}
+	if (option_of_save == save) FileInput(*matrix, N, M);
+	std::cout << "\n";
 
 
 	//далее выполнение то есть создание резалт матrиц для всех сортировок и приравнивание их к сорту далее придумать как их дисплеить
@@ -132,31 +150,46 @@ void Function() {
 	std::cout << "The original matrix:\n";
 	Display(matrix, N, M);
 	std::cout << "\n";
+	std::cout << "\n";
 
 	std::cout << "The selection sort matrix:\n";
 	Display(selection_sort_result_matrix, N, M);
-	selection_sort.Show_counters();
+	std::cout << "\n";
 	std::cout << "\n";
 
 	std::cout << "The insertion sort matrix:\n";
 	Display(insertion_sort_result_matrix, N, M);
-	insertion_sort.Show_counters();
+	std::cout << "\n";
 	std::cout << "\n";
 
 	std::cout << "The bubble sort matrix:\n";
 	Display(bubble_sort_result_matrix, N, M);
-	bubble_sort.Show_counters();
+	std::cout << "\n";
 	std::cout << "\n";
 
 	std::cout << "The shell sort matrix:\n";
 	Display(shell_sort_result_matrix, N, M);
-	shell_sort.Show_counters();
+	std::cout << "\n";
 	std::cout << "\n";
 
 	std::cout << "The quick sort matrix:\n";
 	Display(quick_sort_result_matrix, N, M);
-	quick_sort.Show_counters();
 	std::cout << "\n";
+	std::cout << "\n";
+
+
+
+	std::cout << "Table\n";
+	std::cout << "Sort type: \t   Amount of comparisons: \t         Amount of swaps:\n\n";
+	std::cout << "Selection sort \t\t\t\t" << selection_sort.Get_comparison_counter() << "\t\t\t\t" << selection_sort.Get_swap_counter()<<"\n";
+	std::cout << "insertion sort \t\t\t\t" << insertion_sort.Get_comparison_counter() << "\t\t\t\t" << insertion_sort.Get_swap_counter()<<"\n";
+	std::cout << "Bubble sort \t\t\t\t"    << bubble_sort.Get_comparison_counter()    << "\t\t\t\t" << bubble_sort.Get_swap_counter()   <<"\n";
+	std::cout << "Shell sort \t\t\t\t"     << shell_sort.Get_comparison_counter()     << "\t\t\t\t" << shell_sort.Get_swap_counter()    <<"\n";
+	std::cout << "Quick sort \t\t\t\t"     << quick_sort.Get_comparison_counter()     << "\t\t\t\t" << quick_sort.Get_swap_counter()    <<"\n\n\n";
+
+
+
+
 
 
 	delete selection_sort_result_matrix;
