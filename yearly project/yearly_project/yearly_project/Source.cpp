@@ -1,6 +1,9 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <vector>
 
+#include "Menu.h"
+#include "NumInput.h"
+#include "FileWork.h"
 
 class ISort {
 
@@ -11,7 +14,7 @@ protected:
 
 public:
 
-	virtual std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) = 0;
+	virtual std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>* matrix, int N, int M) = 0;
 
 	int Get_swap_counter() { return swap_counter; }
 	int Get_comparison_counter() { return comparison_counter; }
@@ -47,24 +50,25 @@ std::vector<std::vector<double>>* Transponding(std::vector<std::vector<double>>&
 	}
 	return trans_matrix;
 
-	//дисплей
-	/*for (size_t i = 0; i < M; i++)
-	{
-		for (size_t j = 0; j < N; j++)
-		{
-			std::cout << trans_matrix[i][j] << " ";
-		}
-		std::cout << "\n";
-
-	}*/
 }
 
+void Display(std::vector<std::vector<double>>* matrix, int& N, int& M) {
+	std::vector<std::vector<double>> matrix_display = *matrix;
+	for (size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
+		{
+			std::cout << matrix_display[i][j] << "\t";
+		}
+		std::cout << "\n";
+	}
+}
 
-//сортировка выбором
+//СЃРѕСЂС‚РёСЂРѕРІРєР° РІС‹Р±РѕСЂРѕРј
 class SelectionSort : public ISort {
 public:
-	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix,int N,int M) override {
-		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>* matrix,int N,int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(*matrix, N, M);
 		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
 		int t = N;
 		N = M;
@@ -95,12 +99,12 @@ private:
 
 };
 
-//сортировка вставками
+//СЃРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєР°РјРё
 class InsertionSort : public ISort {
 
 public:
-	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) override {
-		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>* matrix, int N, int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(*matrix, N, M);
 		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
 		int t = N;
 		N = M;
@@ -131,12 +135,12 @@ private:
 
 };
 
-//сортировка пузырьком
+//СЃРѕСЂС‚РёСЂРѕРІРєР° РїСѓР·С‹СЂСЊРєРѕРј
 class BubbleSort : public ISort {
 
 public:
-	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) override {
-		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>* matrix, int N, int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(*matrix, N, M);
 		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
 		int t = N;
 		N = M;
@@ -168,12 +172,12 @@ private:
 
 };
 
-//сортировка Шелла
+//СЃРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°
 class ShellSort : public ISort {
 
 public:
-	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) override {
-		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>* matrix, int N, int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(*matrix, N, M);
 		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
 		int t = N;
 		N = M;
@@ -191,8 +195,6 @@ private:
 	void Shell_sort(std::vector<double>& array, int size) {
 		for (size_t gap = size / 2; gap > 0; gap = gap / 2) {
 			for (size_t i = gap; i < size; ++i) {
-				double temp = array[i];
-				size_t j = 0;
 				for (size_t j = i; j >= gap; j -= gap) {
 
 					comparison_counter++;
@@ -208,12 +210,12 @@ private:
 
 };
 
-//быстрая сортировка
+//Р±С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
 class QSort : public ISort {
 
 public:
-	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>& matrix, int N, int M) override {
-		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(matrix, N, M);
+	std::vector<std::vector<double>>* Sort(std::vector<std::vector<double>>* matrix, int N, int M) override {
+		std::vector<std::vector<double>>* trans_matrix_ptr = Transponding(*matrix, N, M);
 		std::vector<std::vector<double>>& trans_matrix = *trans_matrix_ptr;
 		int t = N;
 		N = M;
@@ -267,6 +269,189 @@ private:
 
 
 
+void HandFilling(std::vector<std::vector<double>>& matrix, int& N, int& M) {
+	size_t size = N * M;
+	std::cout << "enter "<< size <<"numbers" << "\n";
+	for(size_t i = 0; i < N; i++)
+	{
+		for (size_t j = 0; j < M; j++)
+		{
+			double temp = double_Num_input();
+			(matrix[i][j]) = temp;
+		}
+	}
+	std::cout << "\n" << "\n" << "\n";
+
+}
+
+void Filling(bool option, std::vector<std::vector<double>> *&matrix, int& N, int& M) {
+	if (option == file_filling) {
+		FileFilling(matrix, N, M);
+	}
+	else {
+		HandFilling(*matrix, N, M);
+	}
+}
+
+
+
+void Function() {
+	int N = 0; // РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє i
+	int M = 0; // РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ j
+	std::vector<std::vector<double>> *matrix = nullptr;
+
+	std::cout << "type a option of filling " << "\n"
+		"2 - random 1 - file 0 - hand" << "\n";
+
+	int option_of_filling = hand_filling;
+	while (true) {
+		option_of_filling = int_Num_input();
+		if (option_of_filling == file_filling || option_of_filling == hand_filling || option_of_filling == random_filling) {
+			break;
+		}
+		std::cout << "Invalid input. Please enter a valid number." << "\n";
+	}
+
+
+	if (option_of_filling == hand_filling) {
+
+		std::cout << "enter the number of rows and the number of columns " << "\n";
+		N = int_Num_input();
+		M = int_Num_input();
+		matrix = new std::vector<std::vector<double>> (N, std::vector<double>(M));
+	}
+
+	Filling(option_of_filling, matrix, N,M); 
+
+	std::cout << "do you want to save the result?\n 1 - yes\n 0 - no" << "\n";// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	int option_of_save = 0;
+	while (true) {
+		option_of_save = int_Num_input();
+		if (option_of_save == save || option_of_save == dontSave) {
+			break;
+		}
+		std::cout << "Invalid input. Please enter a valid number." << "\n";
+	}
+	std::cout << "\n";
+
+	//РґР°Р»РµРµ РІС‹РїРѕР»РЅРµРЅРёРµ С‚Рѕ РµСЃС‚СЊ СЃРѕР·РґР°РЅРёРµ СЂРµР·Р°Р»С‚ РјР°С‚РёС† РґР»СЏ РІСЃРµС… СЃРѕСЂС‚РёСЂРѕРІРѕРє Рё РїСЂРёСЂР°РІРЅРёРІР°РЅРёРµ РёС… Рє СЃРѕСЂС‚Сѓ РґР°Р»РµРµ РїСЂРёРґСѓРјР°С‚СЊ РєР°Рє РёС… РґРёСЃРїР»РµРёС‚СЊ
+
+	SelectionSort  selection_sort;
+	InsertionSort  insertion_sort;
+	BubbleSort	   bubble_sort;
+	ShellSort	   shell_sort;
+	QSort		   quick_sort;
+
+
+	std::vector<std::vector<double>> *selection_sort_result_matrix = selection_sort.Sort(matrix, N, M);
+	std::vector<std::vector<double>> *insertion_sort_result_matrix = insertion_sort.Sort(matrix, N, M);
+	std::vector<std::vector<double>> *bubble_sort_result_matrix    = bubble_sort.Sort(matrix, N, M);
+	std::vector<std::vector<double>> *shell_sort_result_matrix     = shell_sort.Sort(matrix, N, M);
+	std::vector<std::vector<double>> *quick_sort_result_matrix     = quick_sort.Sort(matrix, N, M);
+
+
+
+
+	std::cout << "The original matrix:\n";
+	Display(matrix, N, M);
+	std::cout << "\n";
+
+	std::cout << "The selection sort matrix:\n";
+	Display(selection_sort_result_matrix, N, M);
+	selection_sort.Show_counters();
+	std::cout << "\n";
+
+	std::cout << "The insertion sort matrix:\n";
+	Display(insertion_sort_result_matrix, N, M);
+	insertion_sort.Show_counters();
+	std::cout << "\n";
+
+	std::cout << "The bubble sort matrix:\n";
+	Display(bubble_sort_result_matrix   , N, M);
+	bubble_sort.Show_counters();
+	std::cout << "\n";
+
+	std::cout << "The shell sort matrix:\n";
+	Display(shell_sort_result_matrix    , N, M);
+	shell_sort.Show_counters();
+	std::cout << "\n";
+
+	std::cout << "The quick sort matrix:\n";
+	Display(quick_sort_result_matrix    , N, M);
+	quick_sort.Show_counters();
+	std::cout << "\n";
+
+
+
+
+	
+	delete selection_sort_result_matrix;
+	delete insertion_sort_result_matrix;
+	delete bubble_sort_result_matrix; 
+	delete shell_sort_result_matrix;    
+	delete quick_sort_result_matrix;
+	delete matrix;
+}
+
+
+
+
+
+
+
+
+int main()
+{
+	setlocale(LC_CTYPE, "Russian");
+	int command = 0;
+
+	std::cout << "Hello, Alexey Konstantinovich, Roman Valerievich and Ivan Grigorievich\n"
+		<< "Author: Ivanov Gleb Igorevich\n"
+		<< "group: 4303, 2024\n"
+		<< "Project name: 2_c++_prog.cpp\n"
+		<< "Task name: task 2 variant 13\n"
+
+		<< "Task text:  Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ вЂ“ РґРѕРєСѓРјРµРЅС‚ РїСЂРµРґРїСЂРёСЏС‚РёСЏ. РџСЂРѕРёР·РІРѕРґРЅС‹Р№ РєР»Р°СЃСЃ вЂ“ РїРёСЃСЊРјРѕ.\n";
+	while (true) {
+
+		std::cout << "begin - 1\ntest - 2 \nexit - 0\n";
+		command =int_Num_input();
+		//std::cout << "\n\n";
+
+		if (command == start) {
+			Function(/*start*/);
+		}
+		else if (command == test) {
+			Function(/*test*/);
+			std::cout << "\n\n";
+		}
+		else if (command == Exit) {
+
+
+			std::cout << "prog has been finished";
+			std::cout << "\n\n";
+			break;
+
+		}
+		else {
+			std::cout << "command not found" << "\n" << "\n";
+		}
+	}
+}
+
+
+/*
+transponding matrix
+РІРѕР·РјРѕР¶РЅРѕ СЃРґРµР»Р°С‚СЊ СЃРІР°Рї РІ РёСЃРѕСЂС‚Рµ С€Р°Р±Р»РѕРЅР°РјРё
+
+3 2 
+3 1 -72 0 2 3 
+
+
+
+3 1
+-72 0
+2 3
 
 
 
@@ -277,12 +462,13 @@ private:
 
 
 
-int main() {
 
-	int N = 0; // количество строк i
-	int M = 0; // количество столбцов j 
 
-	std::cout << "введите количество строк и количество столбцов\n";
+
+	int N = 0; // РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє i
+	int M = 0; // РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ j
+
+	std::cout << "РІРІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє Рё РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ\n";
 	std::cin >> N >> M;
 	std::vector<std::vector<double>> matrix(N, std::vector<double>(M));
 
@@ -308,24 +494,26 @@ int main() {
 		std::cout << "\n";
 
 	}
-}
-
-
-/*
-transponding matrix
-возможно сделать свап в исорте шаблонами
-
-3 2 
-3 1 -72 0 2 3 
 
 
 
-3 1
--72 0
-2 3
+
+	1 
+	0 
+	4 5 
+
+	167 898 23 892 3 
+	32 323 928 23 1 
+	74897 34 23 432 4 
+	0 32 43 5 9 
 
 
 
+
+	1 
+	1 
+	test.txt 
+	0 
 
 
 
