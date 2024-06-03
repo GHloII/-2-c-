@@ -22,7 +22,7 @@ void show_greeting() {
 	std::cout << "Course work." << "\n" << "\n";
 
 
-	std::cout << "Create a console program to sort an array using:" << "\n";
+	std::cout << "Create a console program to sort an array. Additionally, sort the columns of a matrix in ascending order." << "\n"; //
 	std::cout << "bubble sort, selection sort, insertion sort, shell sort, and quicksort." << "\n";
 	std::cout << "Display the unordered array once, and then display the ordered arrays for each sorting method." << "\n";
 	std::cout << "Also, create a comparative table showing the efficiency of each sorting method," << "\n";
