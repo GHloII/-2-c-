@@ -1,0 +1,18 @@
+original matrix:
+9	8	7	
+6	5	4	
+3	2	1	
+sorted matrix:
+3	2	1	
+6	5	4	
+9	8	7	
+Table
+Sort type: 	   Amount of comparisons: 	         Amount of swaps:
+
+Selection sort 				9				9
+insertion sort 				9				9
+Bubble sort 				9				9
+Shell sort 				9				9
+Quick sort 				9				9
+
+

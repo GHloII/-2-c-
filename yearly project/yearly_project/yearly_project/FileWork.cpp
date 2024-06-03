@@ -1,8 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <filesystem>
-#include <cctype> 
+#include "FileWork.h"
 
 namespace fs = std::filesystem;
 

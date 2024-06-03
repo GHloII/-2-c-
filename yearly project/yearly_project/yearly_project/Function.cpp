@@ -55,11 +55,11 @@ void HandFilling(std::vector<std::vector<double>>& matrix, int& N, int& M) {
 		for (size_t j = 0; j < M; j++)
 		{
 			double temp = double_Num_input();
+
 			(matrix[i][j]) = temp;
 		}
 	}
 	std::cout << "\n" << "\n" << "\n";
-
 }
 
 
@@ -116,17 +116,6 @@ void Function() {
 
 	Filling(option_of_filling, matrix, N, M);
 
-	std::cout << "Want to save the original matrix?\n 1 - yes\n 0 - no" << "\n";// ������ ����������� ������
-	int option_of_save = 0;
-	while (true) {
-		option_of_save = int_Num_input();
-		if (option_of_save == save || option_of_save == dontSave) {
-			break;
-		}
-		std::cout << "Invalid input. Please enter a valid number." << "\n";
-	}
-	if (option_of_save == save) FileInput(*matrix, N, M);
-	std::cout << "\n";
 
 
 	//далее выполнение то есть создание резалт матrиц для всех сортировок и приравнивание их к сорту далее придумать как их дисплеить
@@ -189,6 +178,69 @@ void Function() {
 
 
 
+	std::cout << "Want to save the original matrix?\n 1 - yes\n 0 - no" << "\n";// ������ ����������� ������
+	int option_of_save = 0;
+	while (true) {
+		option_of_save = int_Num_input();
+		if (option_of_save == save || option_of_save == dontSave) {
+			break;
+		}
+		std::cout << "Invalid input. Please enter a valid number." << "\n";
+	}
+	if (option_of_save == save) FileInput(*matrix, N, M);
+	std::cout << "\n";
+
+
+
+	std::cout << "Want to save the result?\n 1 - yes\n 0 - no" << "\n";
+	int option_of_save_result = 0;
+	while (true) {
+		option_of_save_result = int_Num_input();
+		if (option_of_save_result == save || option_of_save_result == dontSave) {
+			break;
+		}
+		std::cout << "Invalid input. Please enter a valid number." << "\n";
+	}
+	if (option_of_save_result == save) {
+		std::ofstream file;
+
+		while (true) {
+
+			std::cout << "please tape any filenameway" << "\n";
+			std::string filename;
+			std::cin >> filename;
+
+			//открытие файла:
+			if (OpenFile(filename, file)) {
+				break;
+			}
+		}
+
+		file << "original matrix:\n";
+		for (size_t i = 0; i < N; i++) {
+			for (size_t j = 0; j < M; j++) {
+				file << (*matrix)[i][j] << "\t";
+			}
+			file << '\n';
+		}
+
+		file << "sorted matrix:\n";
+		for (size_t i = 0; i < N; i++) {
+			for (size_t j = 0; j < M; j++) {
+				file << (*quick_sort_result_matrix)[i][j] << "\t";
+			}
+			file << '\n';
+		}
+
+		file << "Table\n";
+		file << "Sort type: \t   Amount of comparisons: \t         Amount of swaps:\n\n";
+		file << "Selection sort \t\t\t\t" << selection_sort.Get_comparison_counter() << "\t\t\t\t" << selection_sort.Get_swap_counter() << "\n";
+		file << "insertion sort \t\t\t\t" << insertion_sort.Get_comparison_counter() << "\t\t\t\t" << insertion_sort.Get_swap_counter() << "\n";
+		file << "Bubble sort \t\t\t\t" << bubble_sort.Get_comparison_counter() << "\t\t\t\t" << bubble_sort.Get_swap_counter() << "\n";
+		file << "Shell sort \t\t\t\t" << shell_sort.Get_comparison_counter() << "\t\t\t\t" << shell_sort.Get_swap_counter() << "\n";
+		file << "Quick sort \t\t\t\t" << quick_sort.Get_comparison_counter() << "\t\t\t\t" << quick_sort.Get_swap_counter() << "\n\n\n";
+	}
+	std::cout << "\n";
 
 
 

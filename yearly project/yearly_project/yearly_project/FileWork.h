@@ -1,5 +1,9 @@
 #pragma once
-
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <filesystem>
+#include <cctype> 
 
 bool FileIsEmpty(std::string filename);
 bool OpenFile(std::string filename, std::ifstream& file); // чтение
