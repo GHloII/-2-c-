@@ -15,16 +15,35 @@ std::vector<std::vector<double>>* BubbleSort::Sort(std::vector<std::vector<doubl
     return result_matrix_ptr;
 }
 
+//void BubbleSort::Bubble_sort(std::vector<double>& array, int size) {
+//    for (size_t i = 1; i < size; i++) {
+//        for (size_t j = 0; j < size - i; j++) {
+//            comparison_counter++;
+//            if (abs(array[j]) > abs(array[j + 1])) {
+//                swap_counter++;
+//                double t = array[j];
+//                array[j] = array[j + 1];
+//                array[j + 1] = t;
+//            }
+//        }
+//    }
+//}
+
 void BubbleSort::Bubble_sort(std::vector<double>& array, int size) {
-    for (size_t i = 1; i < size; i++) {
-        for (size_t j = 0; j < size - i; j++) {
+    int last = 0;
+    int k = size - 1;
+    while (k>0){
+        last = -1;
+        for (int j = 0; j < k; j++) {
             comparison_counter++;
             if (abs(array[j]) > abs(array[j + 1])) {
                 swap_counter++;
                 double t = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = t;
+                last = j;
             }
         }
+        k = last;
     }
 }
