@@ -76,7 +76,7 @@ void RandomFilling(std::vector<std::vector<double>>& matrix, int& N, int& M) {
 
 void Filling(int option, std::vector<std::vector<double>>*& matrix, int& N, int& M) {
 	if (option == file_filling) {
-		FileFilling(matrix, N, M);
+		FromFileFilling(matrix, N, M);
 	}
 	else if (option == hand_filling) {
 		HandFilling(*matrix, N, M);
@@ -109,8 +109,8 @@ void Function() {
 	if (option_of_filling == hand_filling || option_of_filling == random_filling) {
 
 		std::cout << "Enter the number of rows and the number of columns " << "\n";
-		N = int_Num_input();
-		M = int_Num_input();
+		N = static_cast<int>(Un_Num_input());
+		M = static_cast<int>(Un_Num_input());
 		matrix = new std::vector<std::vector<double>>(N, std::vector<double>(M));
 	}
 
@@ -209,6 +209,7 @@ void Function() {
 			std::cout << "please tape any filenameway" << "\n";
 			std::string filename;
 			std::cin >> filename;
+			Removing_Quotes(filename);
 
 			//открытие файла:
 			if (OpenFile(filename, file)) {
